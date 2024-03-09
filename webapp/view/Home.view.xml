@@ -1,7 +1,9 @@
 <mvc:View controllerName="com.lab2dev.firstapp.controller.Home"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+    <List headerText="Products" headerLevel="H2">
+        <StandardListItem title="Produto 1" counter="7" />
+        <StandardListItem title="Produto 2" counter="10"/>
+        <StandardListItem title="Produto 3" counter="5" />
+    </List>
 </mvc:View>
