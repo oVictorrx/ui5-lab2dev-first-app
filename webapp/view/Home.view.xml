@@ -1,16 +1,37 @@
-<mvc:View controllerName="com.lab2dev.firstapp.controller.Home"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <List headerText="Products" headerLevel="H2">
-        <StandardListItem type="Active" press="onPress" title="Arroz" counter="5" />
-        <StandardListItem type="Active" press="onPress" title="Feijão" counter="8"/>
-        <StandardListItem type="Active" press="onPress" title="Macarrão" counter="10" />
-        <StandardListItem type="Active" press="onPress" title="Óleo de Cozinha" counter="3" />
-        <StandardListItem type="Active" press="onPress" title="Leite" counter="7" />
-        <StandardListItem type="Active" press="onPress" title="Café" counter="4" />
-        <StandardListItem type="Active" press="onPress" title="Açúcar" counter="6" />
-        <StandardListItem type="Active" press="onPress" title="Sal" counter="2" />
-        <StandardListItem type="Active" press="onPress" title="Farinha de Trigo" counter="9" />
-        <StandardListItem type="Active" press="onPress" title="Sabonete" counter="11" />
-    </List>
+<mvc:View 
+    controllerName="com.lab2dev.firstapp.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <List 
+                headerText="Produtos" 
+                headerLevel="H2" 
+                items="{products>/}"
+            >
+                <ObjectListItem 
+                    title="{products>ProductName}"
+                    type="Active"
+                    press="onPress"
+                    number="{products>UnitPrice}"
+                    numberUnit ="USD"
+                > 
+                    <firstStatus>
+                        <ObjectStatus
+                            text="{products>Discontinued}"
+                            state="Success"
+                        />
+                    </firstStatus>
+                    <ObjectAttribute text="{products>Category/CategoryName}" />
+                    <ObjectAttribute text="{products>UnitsInStock} in Stock" />
+                    <ObjectAttribute text="{products>QuantityPerUnit}" />
+                </ObjectListItem>
+            </List>
+        </content>
+    </Page>
 </mvc:View>

@@ -1,13 +1,33 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/m/MessageBox"],
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageBox",
+    "com/lab2dev/firstapp/model/models",
+  ],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    */
-  function (Controller, MessageToast, MessageBox) {
+  function (Controller, MessageBox, models) {
     "use strict";
 
     return Controller.extend("com.lab2dev.firstapp.controller.Home", {
-      onInit: function () {},
+      onInit: function () {
+        const params = {
+          urlParameters: {
+            $expand: "Category",
+          },
+        };
+
+        const products = models.getProducts(params);
+
+        products
+          .then((oProductsModels) => {
+            this.getView().setModel(oProductsModels, "products");
+          })
+          .catch((oError) => {
+            MessageBox.error(oError);
+          });
+      },
 
       onPress: function (oEvent) {
         const item = oEvent.getSource();
