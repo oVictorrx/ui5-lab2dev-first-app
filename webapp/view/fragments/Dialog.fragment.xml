@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="helloDialog"
+        title="My Dialog"
+    >
+        <content>
+            <VBox class="sapUiSmallMargin" >
+                <Text 
+                  class="myCustomClass"
+                  text="Hello World!" 
+                />
+                <Button
+                    text="Close"
+                    press="onCloseDialog"
+                />
+            </VBox>
+        </content>
+    </Dialog>
+</core:FragmentDefinition>

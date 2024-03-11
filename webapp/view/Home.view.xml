@@ -8,23 +8,72 @@
         id="page"
         title="{i18n>title}"
     >
+        <subHeader>
+            <Toolbar>
+                <SearchField
+                    id="searchField"
+                    liveChange="onSearch"
+                    width="100%"
+                    placeholder="{i18n>searchPlaceholder}"
+                />
+                <SearchField
+                    id="searchFieldOData"
+                    change="onSearchOData"
+                    width="100%"
+                    placeholder="{i18n>searchPlaceholderOdata}"
+                />
+                <ToolbarSeparator/>
+                <Button
+                id="helloDialogButton"
+                icon="sap-icon://hello-world"
+                text="Open Dialog"
+                type="Success"
+                press="onOpenDialog"
+                />
+            </Toolbar>
+        </subHeader>
+
         <content>
             <List 
+                id="list"
                 headerText="Produtos" 
                 headerLevel="H2" 
-                items="{products>/}"
+                items="{
+                    path: 'products>/',
+                    sorter: {
+                        path: 'Category/CategoryName',
+                        group: true,
+                        descending: false
+                    }
+                }"
             >
                 <ObjectListItem 
-                    title="{products>ProductName}"
+                    title="{
+                        path: 'products>ProductName',
+                        formatter: '.formatter.toUpperCase'
+                        }"
+                    number="{products>UnitPrice}"
+                    numberState="{= ${products>UnitPrice} > 15 ? 'Error' : 'Success'}"
+                    numberUnit ="USD"
                     type="Active"
                     press="onPress"
-                    number="{products>UnitPrice}"
-                    numberUnit ="USD"
                 > 
                     <firstStatus>
                         <ObjectStatus
-                            text="{products>Discontinued}"
-                            state="Success"
+                            text="{
+                                parts: [
+                                    {path: 'products>UnitsInStock'},
+                                    {path: 'products>UnitsOnOrder'}
+                                ],
+                                formatter: '.formatter.checkStockText'
+                            }"
+                            state="{
+                                parts: [
+                                    {path: 'products>UnitsInStock'},
+                                    {path: 'products>UnitsOnOrder'}
+                                ],
+                                formatter: '.formatter.checkStockState'
+                            }"
                         />
                     </firstStatus>
                     <ObjectAttribute text="{products>Category/CategoryName}" />

@@ -1,0 +1,15 @@
+<mvc:View 
+    controllerName="com.lab2dev.firstapp.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="Product {detailView>/productId}"
+        showNavButton="true"
+        navButtonPress=".onNavBack"
+    >
+        <content/>
+    </Page>
+</mvc:View>
